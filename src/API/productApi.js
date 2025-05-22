@@ -1,8 +1,11 @@
 import Axios from 'axios';
-export const SERVER_URL = 'http://localhost:8080/api/shopping-list';
+export const SHOPPING_LIST_URL = 'http://localhost:8080/api/shopping-list';
+export const INCOME_URL = 'http://localhost:8080/api/income';
+export const EXPENSES_URL = 'http://localhost:8080/api/expenses';
+
 
 export const addProduct = (name, price) => {
-    const url = `${SERVER_URL}/add`;
+    const url = `${SHOPPING_LIST_URL}/add`;
     const newProduct= {
         name: name, 
         price: price,
@@ -10,3 +13,65 @@ export const addProduct = (name, price) => {
     return Axios.post(url, newProduct)
 }
 
+export const deleteProduct = (id) => {
+    const url = `${SHOPPING_LIST_URL}/delete/${id}`;
+    return Axios.delete(url);
+};
+
+// Find a product by ID
+export const findProduct = (id) => {
+    const url = `${SHOPPING_LIST_URL}/${id}`;
+    return Axios.get(url);
+};
+
+// Get the full shopping list
+export const getShoppingList = () => {
+    const url = `${SHOPPING_LIST_URL}/`;
+    return Axios.get(url);
+};
+
+// === INCOME ENDPOINTS ===
+
+// Add new income
+export const addIncome = (price, name) => {
+    const url = `${INCOME_URL}/add`;
+    const newIncome = { price, name, quantity: 1 };
+    return Axios.post(url, newIncome);
+};
+
+// Get all incomes
+export const getIncomes = () => {
+    const url = `${INCOME_URL}/`;
+    return Axios.get(url);
+};
+
+// Delete income by ID
+export const deleteIncome = (id) => {
+    const url = `${INCOME_URL}/delete/${id}`;
+    return Axios.delete(url);
+};
+
+// Add a new expense
+export const addExpense = (expense, amount) => {
+    const url = `${EXPENSES_URL}/add`;
+    const newExpense = { expense, amount };
+    return Axios.post(url, newExpense);
+};
+
+// Get all expenses
+export const getExpenses = () => {
+    const url = `${EXPENSES_URL}/`;
+    return Axios.get(url);
+};
+
+// Delete expense by ID
+export const deleteExpense = (id) => {
+    const url = `${EXPENSES_URL}/delete/${id}`;
+    return Axios.delete(url);
+};
+
+// Find specific expense by ID
+export const findExpense = (id) => {
+    const url = `${EXPENSES_URL}/${id}`;
+    return Axios.get(url);
+};

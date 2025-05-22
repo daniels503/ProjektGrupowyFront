@@ -1,40 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { addProduct, deleteProduct, getShoppingList } from '../API/productApi';
 import './List.css';
-
 
 function List() {
   const [inputValue, setInputValue] = useState('');
-  const [items, setItems] = useState([
-    { id: 1, text: 'zakupy' },
-    { id: 2, text: 'prad', checked: true },
-  ]);
+  const [items, setItems] = useState([]);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  useEffect(() => {
+    getShoppingList().then(response => setItems(response.data));
+  }, []);
 
   const handleAddItem = () => {
     if (inputValue.trim() !== '') {
-      setItems((prevItems) => [
-        ...prevItems,
-        { id: Date.now(), text: inputValue },
-      ]);
-      setInputValue('');
+      addProduct(inputValue, 0)
+        .then(response => {
+          setItems(prev => [...prev, response.data]);
+          setInputValue('');
+        })
+        .catch(err => console.error(err));
     } else {
       alert('Nie zostawiaj pustych pól!');
     }
   };
 
   const handleRemoveItem = (id) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
-
-  const handleToggleChecked = (id) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
-      )
-    );
+    deleteProduct(id)
+      .then(() => setItems(prev => prev.filter(item => item.id !== id)))
+      .catch(err => console.error(err));
   };
 
   return (
@@ -43,27 +35,18 @@ function List() {
         <h2>Lista zakupów</h2>
         <input
           type="text"
-          id="myInput"
-          placeholder="Title..."
+          placeholder="Nowy produkt"
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={e => setInputValue(e.target.value)}
         />
-        <button onClick={handleAddItem} className="addBtn">
-          Dodaj
-        </button>
+        <button onClick={handleAddItem} className="addBtn">Dodaj</button>
       </div>
 
       <ul id="myUl">
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className={item.checked ? 'checked' : ''}
-            onClick={() => handleToggleChecked(item.id)}
-          >
-            {item.text}
-            <span className="close" onClick={() => handleRemoveItem(item.id)}>
-              &times;
-            </span>
+        {items.map(item => (
+          <li key={item.id}>
+            {item.name}
+            <span className="close" onClick={() => handleRemoveItem(item.id)}>&times;</span>
           </li>
         ))}
       </ul>
