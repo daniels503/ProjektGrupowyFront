@@ -4,11 +4,13 @@ export const INCOME_URL = 'http://localhost:8080/api/income';
 export const EXPENSES_URL = 'http://localhost:8080/api/expenses';
 
 
-export const addProduct = (name, price) => {
+export const addProduct = (name, price, quantity, category) => {
     const url = `${SHOPPING_LIST_URL}/add`;
     const newProduct= {
         name: name, 
         price: price,
+        quantity: quantity,
+        category: category,
     }
     return Axios.post(url, newProduct)
 }
