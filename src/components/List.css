@@ -124,7 +124,8 @@ ul li.checked::before {
   flex-wrap: wrap;
 }
 
-input[type="number"] {
+input[type="number"],
+input[type="date"] {
   margin: 0;
   border: 1px solid #ececec;
   border-radius: 6px;
@@ -136,7 +137,9 @@ input[type="number"] {
   background: #fafafa;
   transition: border 0.2s;
 }
-input[type="number"]:focus {
+
+input[type="number"]:focus,
+input[type="date"]:focus {
   border: 1.5px solid #00adb5;
 }
 

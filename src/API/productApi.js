@@ -36,10 +36,13 @@ export const getShoppingList = () => {
 // === INCOME ENDPOINTS ===
 
 // Add new income
-export const addIncome = (price, name) => {
-    const url = `${INCOME_URL}/add`;
-    const newIncome = { price, name, quantity: 1 };
-    return Axios.post(url, newIncome);
+export const addIncome = (price, name, date) => {
+  const url = `${INCOME_URL}/add`;
+  return Axios.post(url, {
+    name: name,
+    price: price,
+    date: date
+  });
 };
 
 // Get all incomes
@@ -55,11 +58,12 @@ export const deleteIncome = (id) => {
 };
 
 // Add a new expense
-export const addExpense = (expense, amount) => {
-    const url = `${EXPENSES_URL}/add`;
-    const newExpense = { expense, amount };
-    return Axios.post(url, newExpense);
+export const addExpense = (expense, amount, date) => {
+  const url = `${EXPENSES_URL}/add`;
+  const newExpense = { expense, amount, date };
+  return Axios.post(url, newExpense);
 };
+
 
 // Get all expenses
 export const getExpenses = () => {
