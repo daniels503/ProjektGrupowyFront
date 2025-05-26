@@ -36,41 +36,41 @@ function ExpenseTracker() {
 
   return (
     <div>
-      <h2>Wydatki</h2>
-      <input
-        type="text"
-        placeholder="Wydatek"
-        value={newExpense.expense}
-        onChange={e => setNewExpense({ ...newExpense, expense: e.target.value })}
-      />
-      <input
-        type="number"
-        placeholder="Kwota"
-        value={newExpense.amount}
-        onChange={e => setNewExpense({ ...newExpense, amount: e.target.value })}
-      />
-      <button onClick={handleAddExpense}>Dodaj wydatek</button>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Wydatek</th>
-            <th>Kwota</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map(exp => (
-            <tr key={exp.id}>
-              <td>{exp.expense}</td>
-              <td>{exp.amount}</td>
-              <td><button onClick={() => handleDeleteExpense(exp.id)}>Usuń</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div>Suma wydatków: {getTotalExpenses()} zł</div>
+      <div id="myDIV" className="header">
+        <h2>Wydatki</h2>
+        <div className="inputs-row">
+          <input
+            type="text"
+            placeholder="Wydatek"
+            value={newExpense.expense}
+            onChange={e => setNewExpense({ ...newExpense, expense: e.target.value })}
+          />
+          <input
+            type="number"
+            placeholder="Kwota"
+            value={newExpense.amount}
+            onChange={e => setNewExpense({ ...newExpense, amount: e.target.value })}
+          />
+        </div>
+        <div className="add-btn-row">
+          <button onClick={handleAddExpense}>Dodaj wydatek</button>
+        </div>
+        <ul id="myUl">
+          <li style={{ fontWeight: 'bold', paddingBottom: 8 }}>
+            <span style={{ marginRight: 50 }}>Nazwa</span>
+            <span style={{ marginRight: 50 }}>Ilość</span>
+          </li>
+            {expenses.map(exp => (
+              <li key={exp.id}>
+                <span>{exp.expense}</span>
+                <span>{exp.amount}</span>
+                <span><button onClick={() => handleDeleteExpense(exp.id)}>Usuń</button></span>
+              </li>
+            ))}
+        </ul>
+    
+        <div>Suma wydatków: {getTotalExpenses()} zł</div>
+      </div>
     </div>
   );
 }

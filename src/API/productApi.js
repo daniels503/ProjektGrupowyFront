@@ -2,6 +2,7 @@ import Axios from 'axios';
 export const SHOPPING_LIST_URL = 'http://localhost:8080/api/shopping-list';
 export const INCOME_URL = 'http://localhost:8080/api/income';
 export const EXPENSES_URL = 'http://localhost:8080/api/expenses';
+export const PRESETS_URL = 'http://localhost:8080/api/presets';
 
 
 export const addProduct = (name, price, quantity, category) => {
@@ -76,4 +77,30 @@ export const deleteExpense = (id) => {
 export const findExpense = (id) => {
     const url = `${EXPENSES_URL}/${id}`;
     return Axios.get(url);
+};
+
+// PRESETS
+
+// Add new preset
+export const addPreset = (price, name, quantity, category) => {
+    const url = `${PRESETS_URL}/add`;
+    const newPreset= {
+        name: name, 
+        price: price,
+        quantity: quantity,
+        category: category,
+    }
+    return Axios.post(url, newPreset);
+};
+
+// Get all presets
+export const getPresets = () => {
+    const url = `${PRESETS_URL}/`;
+    return Axios.get(url);
+};
+
+// Delete preset by ID
+export const deletePreset = (id) => {
+    const url = `${PRESETS_URL}/delete/${id}`;
+    return Axios.delete(url);
 };
