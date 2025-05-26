@@ -62,7 +62,9 @@ const handleSort = (key) => {
 
   return (
     <div>
+      <div id="myDIV" className="header">
       <h2>Wydatki</h2>
+      <div className="inputs-row">
       <input
         type="text"
         placeholder="Wydatek"
@@ -80,8 +82,10 @@ const handleSort = (key) => {
         value={newExpense.date}
         onChange={e => setNewExpense({ ...newExpense, date: e.target.value })}
       />
+      </div>
+      <div className="add-btn-row">
       <button onClick={handleAddExpense}>Dodaj wydatek</button>
-
+      </div>
       <table>
         <thead>
           <tr>
@@ -109,7 +113,22 @@ const handleSort = (key) => {
         </tbody>
       </table>
 
+<ul id="myUl">
+          <li style={{ fontWeight: 'bold', paddingBottom: 8 }}>
+            <span style={{ marginRight: 50 }}>Nazwa</span>
+            <span style={{ marginRight: 50 }}>Ilość</span>
+          </li>
+            {expenses.map(exp => (
+              <li key={exp.id}>
+                <span>{exp.expense}</span>
+                <span>{exp.amount}</span>
+                <span><button onClick={() => handleDeleteExpense(exp.id)}>Usuń</button></span>
+              </li>
+            ))}
+        </ul>
+
       <div>Suma wydatków: {getTotalExpenses()} zł</div>
+      </div>
     </div>
   );
 }

@@ -31,6 +31,7 @@ function IncomeTracker() {
       .catch(err => console.error(err));
   };
 
+  
   const handleSort = (key) => {
     setSortConfig(prev =>
       prev.key === key
@@ -54,7 +55,9 @@ function IncomeTracker() {
 
   return (
     <div>
+    <div id="myDIV" className="header">
       <h2>Przychody</h2>
+      <div className="inputs-row">
       <input
         type="text"
         placeholder="Źródło"
@@ -73,7 +76,9 @@ function IncomeTracker() {
         onChange={e => setNewIncome({ ...newIncome, date: e.target.value })}
       />
       <button onClick={handleAddIncome}>Dodaj przychód</button>
-
+</div>
+      
+      
       <table>
         <thead>
           <tr>
@@ -101,7 +106,24 @@ function IncomeTracker() {
         </tbody>
       </table>
 
+<ul id="myUl">
+          <li style={{ fontWeight: 'bold', paddingBottom: 8 }}>
+            <span style={{ marginRight: 50 }}>Nazwa</span>
+            <span style={{ marginRight: 50 }}>Ilość</span>
+          </li>
+          {incomes.map(inc => (
+            <li key={inc.id}>
+              <span>{inc.name}</span>
+              {inc.price !== undefined && inc.price !== null && (
+                <span style={{marginLeft: 8, color: '#888', fontSize: 14}}>{inc.price} zł</span>
+              )}
+              <span className="close" onClick={() => handleDeleteIncome(inc.id)}>&times;</span>
+            </li>
+
+          ))}
+        </ul>
       <div>Suma przychodów: {getTotalIncomes()} zł</div>
+      </div>
     </div>
   );
 }
