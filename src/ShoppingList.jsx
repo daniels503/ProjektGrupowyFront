@@ -3,7 +3,7 @@ function ShoppingList() {
 
     return (
         
-      <div>
+      <div style={{width: "90%"}}>
         <List></List>
       </div>
       

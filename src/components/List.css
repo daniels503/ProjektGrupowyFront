@@ -1,3 +1,60 @@
+.span {
+  width: 16%
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.preset-container {
+  width: 50%;
+  min-width: 500px;
+}
+
+.list-container {
+  width: 50%;
+  min-width: 500px;
+}
+
+.input-preset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.dropdown li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+.dropdown li button {
+  margin-left: 5px;
+}
+
+.header {
+    align-items: flex-start; /* Align top edges */
+    gap: 20px; /* Space between columns */
+    background: #fff;
+    padding: 24px 24px 16px 24px;
+    color: #222;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    width: 90%;
+    max-width: 1200px;
+    margin: 32px auto 0 auto;
+}
 
 ul {
   margin: 32px auto 0 auto;
@@ -57,17 +114,7 @@ ul li.checked::before {
   color: #e74c3c;
 }
   
-.header {
-    background: #fff;
-    padding: 24px 24px 16px 24px;
-    color: #222;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    width: 90%;
-    max-width: 1200px;
-    margin: 32px auto 0 auto;
-}
+
 
 .inputs-row {
   display: flex;
@@ -137,3 +184,4 @@ input[type="text"]:focus {
 .addBtn:hover {
   background: #009ca3;
 }
+

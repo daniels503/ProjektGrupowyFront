@@ -36,41 +36,44 @@ function IncomeTracker() {
 
   return (
     <div>
-      <h2>Przychody</h2>
-      <input
-        type="text"
-        placeholder="Źródło"
-        value={newIncome.name}
-        onChange={e => setNewIncome({ ...newIncome, name: e.target.value })}
-      />
-      <input
-        type="number"
-        placeholder="Kwota"
-        value={newIncome.price}
-        onChange={e => setNewIncome({ ...newIncome, price: e.target.value })}
-      />
-      <button onClick={handleAddIncome}>Dodaj przychód</button>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Źródło</th>
-            <th>Kwota</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
+      <div id="myDIV" className="header">
+        <h2>Przychody</h2>
+          <div className="inputs-row">
+            <input
+              type="text"
+              placeholder="Źródło"
+              value={newIncome.name}
+              onChange={e => setNewIncome({ ...newIncome, name: e.target.value })}
+            />
+            <input
+              type="number"
+              placeholder="Kwota"
+              value={newIncome.price}
+              onChange={e => setNewIncome({ ...newIncome, price: e.target.value })}
+            />
+          </div>
+          <div className="add-btn-row">
+            <button onClick={handleAddIncome}>Dodaj przychód</button>
+          </div>
+        
+        <ul id="myUl">
+          <li style={{ fontWeight: 'bold', paddingBottom: 8 }}>
+            <span style={{ marginRight: 50 }}>Nazwa</span>
+            <span style={{ marginRight: 50 }}>Ilość</span>
+          </li>
           {incomes.map(inc => (
-            <tr key={inc.id}>
-              <td>{inc.name}</td>
-              <td>{inc.price}</td>
-              <td><button onClick={() => handleDeleteIncome(inc.id)}>Usuń</button></td>
-            </tr>
+            <li key={inc.id}>
+              <span>{inc.name}</span>
+              {inc.price !== undefined && inc.price !== null && (
+                <span style={{marginLeft: 8, color: '#888', fontSize: 14}}>{inc.price} zł</span>
+              )}
+              <span className="close" onClick={() => handleDeleteIncome(inc.id)}>&times;</span>
+            </li>
           ))}
-        </tbody>
-      </table>
+        </ul>
 
-      <div>Suma przychodów: {getTotalIncomes()} zł</div>
+        <div>Suma przychodów: {getTotalIncomes()} zł</div>
+      </div>
     </div>
   );
 }
