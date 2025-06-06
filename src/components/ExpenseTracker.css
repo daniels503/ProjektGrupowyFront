@@ -103,4 +103,16 @@ table {
   div:last-child {
     margin-top: 20px;
   }
-  
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.filter-row input {
+  padding: 6px;
+  font-size: 14px;
+  min-width: 120px;
+}
