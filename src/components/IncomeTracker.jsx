@@ -105,23 +105,6 @@ function IncomeTracker() {
           ))}
         </tbody>
       </table>
-
-<ul id="myUl">
-          <li style={{ fontWeight: 'bold', paddingBottom: 8 }}>
-            <span style={{ marginRight: 50 }}>Nazwa</span>
-            <span style={{ marginRight: 50 }}>Ilość</span>
-          </li>
-          {incomes.map(inc => (
-            <li key={inc.id}>
-              <span>{inc.name}</span>
-              {inc.price !== undefined && inc.price !== null && (
-                <span style={{marginLeft: 8, color: '#888', fontSize: 14}}>{inc.price} zł</span>
-              )}
-              <span className="close" onClick={() => handleDeleteIncome(inc.id)}>&times;</span>
-            </li>
-
-          ))}
-        </ul>
       <div>Suma przychodów: {getTotalIncomes()} zł</div>
       </div>
     </div>
