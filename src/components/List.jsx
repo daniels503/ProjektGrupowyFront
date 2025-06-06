@@ -121,7 +121,7 @@ function List() {
                   <span style={{marginLeft: 8, color: '#a5a5a5', fontSize: 13, fontStyle: 'italic'}}>{item.category}</span>
                 )}
                 <span className="close" onClick={() => handleRemoveItem(item.id)}>&times;</span>
-                <span className="close" onClick={() => handleSavePreset(item)}>Zapisz</span>
+                <span className="close" onClick={() => handleSavePreset(item)}>Dodaj do ulubionych</span>
               </li>
             ))}
           </ul>
@@ -133,7 +133,7 @@ function List() {
         <input
           className="input-preset"
           type="text"
-          placeholder="Wybierz preset..."
+          placeholder="Wybierz z ulubionych"
           value={presetSearch}
           onChange={e => setPresetSearch(e.target.value)}
           onFocus={() => setShowDropdown(true)}
