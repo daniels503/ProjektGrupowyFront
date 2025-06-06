@@ -142,6 +142,7 @@ function IncomeTracker() {
               </th>
               <th></th>
             </tr>
+
           </thead>
           <tbody>
             {filteredIncomes.map(inc => (
@@ -156,6 +157,7 @@ function IncomeTracker() {
         </table>
 
         <div>Suma przychodów: {getTotalIncomes()} zł</div>
+
       </div>
     </div>
   );

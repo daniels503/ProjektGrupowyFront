@@ -75,6 +75,7 @@ function ExpenseTracker() {
   return (
     <div>
       <div id="myDIV" className="header">
+
         <h2>Wydatki</h2>
         <div className="inputs-row">
           <input
@@ -157,6 +158,7 @@ function ExpenseTracker() {
         </table>
 
         <div>Suma wydatków: {getTotalExpenses()} zł</div>
+
       </div>
     </div>
   );
